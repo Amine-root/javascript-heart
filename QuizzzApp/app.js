@@ -31,6 +31,90 @@ function verifFunc(tabResultats) {
             verifTableau.push(false);
         }
     }
-    console.log(verifTableau);
+    //console.log(verifTableau);
+    afficherResultats(verifTableau);
+    afficherColeur(verifTableau);
     verifTableau = [];
 }
+
+function afficherResultats(tabCheck) {
+
+    const nbDeFautes = tabCheck.filter(el => el !== true).length;
+
+    switch (nbDeFautes) {
+        case 0:
+            titreResultat.innerText = `✔️ Bravo, c'est un sans faute ! ✔️`
+            aideResultat.innerText = ''
+            noteResultat.innerText = '5/5'
+            break;
+        case 1:
+            titreResultat.innerText = `✨ Vous y êtes presque ! ✨`
+            aideResultat.innerText = 'Retentez une autre réponse dans la case rouge, puis re-validez !'
+            noteResultat.innerText = '4/5'
+            break;
+        case 2:
+            titreResultat.innerText = `✨ Encore un effort ... 👀`
+            aideResultat.innerText = 'Retentez une autre réponse dans les cases rouges, puis re-validez !'
+            noteResultat.innerText = '3/5'
+            break;
+        case 3:
+            titreResultat.innerText = `👀 Il reste quelques erreurs. 😭`
+            aideResultat.innerText = 'Retentez une autre réponse dans les cases rouges, puis re-validez !'
+            noteResultat.innerText = '2/5'
+            break;
+        case 4:
+            titreResultat.innerText = `😭 Peux mieux faire ! 😭`
+            aideResultat.innerText = 'Retentez une autre réponse dans les cases rouges, puis re-validez !'
+            noteResultat.innerText = '1/5'
+            break;
+        case 5:
+            titreResultat.innerText = `👎 Peux mieux faire ! 👎`
+            aideResultat.innerText = 'Retentez une autre réponse dans les cases rouges, puis re-validez !'
+            noteResultat.innerText = '0/5'
+        break;
+
+        default:
+            'Wops, cas innatendu.';
+
+    }   
+}
+
+function afficherColeur(tabValBool) {
+    for (let index = 0; index < tabValBool.length; index++) {
+        
+        if (tabValBool[index] === true) {
+            toutesLesQuestions[index].style.background = 'lightgreen';            
+        }
+        else 
+        {
+            toutesLesQuestions[index].style.background = 'red';
+            toutesLesQuestions[index].classList.add('echec');
+
+            setTimeout(() => {
+                toutesLesQuestions[index].classList.remove('echec');
+            }, 500)
+        }
+    }
+    
+}
+
+
+toutesLesQuestions.forEach(element => {
+    element.addEventListener('click', () => {
+        element.style.background = "white"
+    })   
+})
+
+console.log('andiamo avanti');
+
+
+
+
+
+
+
+
+
+
+
+
