@@ -1,4 +1,4 @@
 # javascript-heart
-Javascript coding challenges.
+Many different Javascript projects.
 
-Differents projects made during Javascript training. 
+
